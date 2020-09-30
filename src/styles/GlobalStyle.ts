@@ -12,7 +12,7 @@ export default createGlobalStyle`
      *,button,input{
         border: 0px;
         outline: 0px;
-        font-family: "Ronoto",sans-serif
+        font-family: "Roboto",sans-serif
      }
      button{
         cursor: pointer;
