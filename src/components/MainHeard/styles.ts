@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const DivFlexContainer = styled.div`
+export const HeaderFlexContainer = styled.header`
   grid-area: MH;
 
   background-color: ${({ theme }) => theme.colors.secondary};

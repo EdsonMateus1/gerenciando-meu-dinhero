@@ -14,7 +14,7 @@ const Toggle: React.FC = () => {
         checked={state}
         onChange={() => setState(true)}
       />
-      
+
       <S.SpanToggleLabel>Dark</S.SpanToggleLabel>
     </S.DivContainer>
   );
