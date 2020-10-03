@@ -7,13 +7,14 @@ import Dashboard from "./pages/Dashboard";
 
 import dark from "./styles/themes/dark";
 import light from "./styles/themes/light";
+import List from "./pages/List";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={dark}>
       <GlobalStyle />
       <Layout>
-        <Dashboard />
+        <List/>
       </Layout>
     </ThemeProvider>
   );
