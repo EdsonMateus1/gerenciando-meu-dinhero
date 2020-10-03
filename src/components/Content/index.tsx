@@ -1,12 +1,8 @@
 import React from "react";
 import * as S from "./styles";
 
-const Aside: React.FC = () =>{
-    return (
-        <S.Container>
-            <h1>conted</h1>
-        </S.Container>
-    )
-}
+const Aside: React.FC = ({ children }) => {
+  return <S.Maincontainer>{children}</S.Maincontainer>;
+};
 
-export default Aside
+export default Aside;

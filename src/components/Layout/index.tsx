@@ -4,13 +4,15 @@ import MainHeader from "../MainHeard";
 import Content from "../Content";
 import Aside from "../Aside";
 
-const Layout: React.FC = () => {
+const Layout: React.FC = ({ children }) => {
   return (
-    <S.GridContainer>
+    <S.DivGridContainer>
       <MainHeader />
-      <Content />
+
+      <Content>{children}</Content>
+
       <Aside />
-    </S.GridContainer>
+    </S.DivGridContainer>
   );
 };
 

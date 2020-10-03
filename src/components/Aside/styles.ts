@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const DivContainer = styled.div`
+export const AsideContainer = styled.aside`
   grid-area: AS;
   background-color: ${(props) => props.theme.colors.secondary};
   color: ${(props) => props.theme.colors.white};
-  padding-left: 20px;
+  padding-left: 10px;
   border-right: 1px solid ${(props) => props.theme.colors.gray};
 `;
 
@@ -20,10 +20,11 @@ export const ImgHeaderIcon = styled.img`
 `;
 
 export const TitleHeader = styled.h3`
+  font-size: 1.0rem;
   margin: 0px 5px;
 `;
 
-export const DivMenuContainer = styled.div`
+export const NavMenuContainer = styled.nav`
   position: absolute;
   top: 100px;
 
@@ -36,7 +37,7 @@ export const LinkMenuItem = styled.a`
   margin: 7px 0px;
   text-decoration: nome;
   transition: opacity 0.3;
-
+  font-size: 1.0rem;
   display: flex;
   align-items: center;
 

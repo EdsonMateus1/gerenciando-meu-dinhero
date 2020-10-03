@@ -10,12 +10,14 @@ export const HeaderFlexContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 10px;
+  padding: 0px 25px;
 `;
 
 export const DivProfile = styled.div`
   display: flex;
   flex-direction: column;
+
+  font-size: 1.0rem;
 `;
 
 export const H3Wecome = styled.h3``;

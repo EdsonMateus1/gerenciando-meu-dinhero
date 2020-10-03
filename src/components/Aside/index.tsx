@@ -19,17 +19,20 @@ const menuArray = [
 
 const Aside: React.FC = () => {
   return (
-    <S.DivContainer>
+    <S.AsideContainer>
       <S.DivHeaderContainer>
+
         <S.ImgHeaderIcon
           src={logoImg}
           alt="logo minha carteira"
         ></S.ImgHeaderIcon>
 
         <S.TitleHeader>Minha Carteira</S.TitleHeader>
+
       </S.DivHeaderContainer>
 
-      <S.DivMenuContainer>
+      <S.NavMenuContainer>
+
         {menuArray.map((e) => {
           return (
             <S.LinkMenuItem key={e.title}>
@@ -38,8 +41,9 @@ const Aside: React.FC = () => {
             </S.LinkMenuItem>
           );
         })}
-      </S.DivMenuContainer>
-    </S.DivContainer>
+        
+      </S.NavMenuContainer>
+    </S.AsideContainer>
   );
 };
 
