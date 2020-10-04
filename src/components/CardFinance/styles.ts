@@ -1,5 +1,8 @@
 import styled from "styled-components";
 
+interface IcolorVeryfy {
+  colorVerify: string;
+}
 
 export const DivContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.tertiary};
@@ -25,13 +28,16 @@ export const DivContainer = styled.div`
   align-items: center;
 `;
 
-export const DivTag = styled.div`
+export const DivTag = styled.div<IcolorVeryfy>`
   position: absolute;
   border-radius: 2px;
   width: 10px;
   height: 70%;
   left: 3px;
-  background-color: ${({ theme }) => theme.colors.info};
+  background-color: ${(props) =>
+    props.colorVerify === "eventual"
+      ? props.theme.colors.warning
+      : props.theme.colors.info};
 `;
 
 export const DivTitle = styled.div`

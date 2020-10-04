@@ -6,16 +6,18 @@ interface ICardFinanceProps {
   title: string;
   subtitle: string;
   amount: string;
+  colorVerify: string;
 }
 
 const CardFinance: React.FC<ICardFinanceProps> = ({
   title,
   subtitle,
   amount,
+  colorVerify,
 }) => {
   return (
     <S.DivContainer>
-      <S.DivTag />
+      <S.DivTag colorVerify={colorVerify} />
 
       <S.DivTitle>
         <span>{title}</span>

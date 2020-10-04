@@ -113,6 +113,7 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
                 title={data.description}
                 subtitle={data.date}
                 amount={data.amount}
+                colorVerify={data.frequency}
               />
             ))
           : dataState.map((data, i) => (
@@ -121,6 +122,7 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
                 title={data.description}
                 subtitle={data.date}
                 amount={data.amount}
+                colorVerify={data.frequency}
               />
             ))}
       </S.DivCardContainer>
