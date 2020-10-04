@@ -9,7 +9,7 @@ export const Maincontainer = styled.main `
      height: calc(100vh - 70px);
 
      ::-webkit-scrollbar{
-          width: 10px;
+          width: 12px;
      }
      ::-webkit-scrollbar-thumb{
           background-color: ${props => props.theme.colors.secondary};

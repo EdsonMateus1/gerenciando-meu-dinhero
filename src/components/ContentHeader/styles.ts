@@ -14,7 +14,7 @@ export const H2title = styled.h2`
     content: "";
     display: block;
     width: 55px;
-    border-bottom: 10px solid ${({ theme }) => theme.colors.warning};
+    border-bottom: 10px solid ${({ theme }) => theme.colors.info};
   }
 `;
 

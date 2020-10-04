@@ -20,7 +20,7 @@ export const ImgHeaderIcon = styled.img`
 `;
 
 export const TitleHeader = styled.h3`
-  font-size: 1.0rem;
+  font-size: 1rem;
   margin: 0px 5px;
 `;
 
@@ -32,18 +32,21 @@ export const NavMenuContainer = styled.nav`
   flex-direction: column;
 `;
 
-export const LinkMenuItem = styled.a`
-  color: ${(props) => props.theme.colors.info};
-  margin: 7px 0px;
-  text-decoration: nome;
-  transition: opacity 0.3;
-  font-size: 1.0rem;
+export const LinkMenuItem = styled.div`
   display: flex;
   align-items: center;
+  color: ${(props) => props.theme.colors.info};
+  > a {
+    margin: 7px 0px;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    font-size: 1rem;
+    font-weight: 500;
 
-  &:hover {
-    opacity: 0.7;
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
   }
 
   > svg {

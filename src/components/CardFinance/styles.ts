@@ -13,7 +13,7 @@ export const DivContainer = styled.div`
   position: relative;
 
   cursor: pointer;
-  transition: all 0.3;
+  transition: all 0.3s;
 
   &:hover {
     opacity: 0.8;

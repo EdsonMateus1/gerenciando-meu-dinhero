@@ -1,4 +1,4 @@
-import styled, { ThemeProps } from "styled-components";
+import styled from "styled-components";
 import Switch, { ReactSwitchProps } from "react-switch";
 
 export const DivContainer = styled.div`
