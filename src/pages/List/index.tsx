@@ -1,8 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState, useCallback } from "react";
 
 import CardFinance from "../../components/CardFinance";
 import ContentHeader from "../../components/ContentHeader";
 import SelectInput from "../../components/SelectInput";
+
+import expensesJson from "../../repositores/expenses";
+import gainsJson from "../../repositores/gains";
 
 import * as S from "./styles";
 
@@ -10,28 +13,10 @@ const arrayOptionsMonth = [
   { value: 1, label: "JANEIRO" },
   { value: 2, label: "FEVEREIRO" },
 ];
+
 const arrayOptionsYear = [
   { value: 2019, label: 2019 },
   { value: 2020, label: 2020 },
-];
-
-const arrayCardFinance = [
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
-  { title: "conta de luz", subtitle: "20/20/2020", amount: "$ 210,00" },
 ];
 
 interface IRoutesParams {
@@ -42,10 +27,58 @@ interface IRoutesParams {
   };
 }
 
+interface IData {
+  description: string;
+  amount: string;
+  type: string;
+  frequency: string;
+  date: string;
+}
+
 const List: React.FC<IRoutesParams> = ({ match }) => {
+  const [dataState, setData] = useState<IData[]>([]);
+
+  const [filterdataState, setFilterData] = useState<IData[]>([]);
+
+  const [verifyFilter, setVerifi] = useState(false);
+
   const title = useMemo(() => {
-    return match.params.type === "entry-balance" ? "Entradas" : "Saidas";
+    const title = match.params.type === "entry-balance" ? "Entradas" : "Saidas";
+    return title;
   }, [match.params.type]);
+
+  const listData = () => {
+    title === "Entradas" ? setData(gainsJson) : setData(expensesJson);
+  };
+
+  useEffect(() => {
+    setVerifi(false);
+    listData();
+  }, [match.params]);
+
+  const filterEventuais = useCallback(() => {
+    const eventual = dataState.filter((e) => {
+      return e.frequency === "eventual";
+    });
+    setFilterData(eventual);
+  }, [dataState]);
+
+  const filterRecorrentes = useCallback(() => {
+    const recorrente = dataState.filter((e) => {
+      return e.frequency === "recorrente";
+    });
+    setFilterData(recorrente);
+  }, [dataState]);
+
+  const handleFilterEventuais = useCallback(() => {
+    setVerifi(true);
+    filterEventuais();
+  }, [dataState]);
+
+  const handleFilterRecorrentes = useCallback(() => {
+    setVerifi(true);
+    filterRecorrentes();
+  }, [dataState]);
 
   return (
     <S.DivContainer>
@@ -55,22 +88,41 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
       </ContentHeader>
 
       <S.DivFilterContainer>
-        <button type="button" className="tag-filter">
-          Recorrentes
-        </button>
-        <button type="button" className="tag-filter">
+        <button
+          type="button"
+          className="tag-filter"
+          onClick={handleFilterEventuais}
+        >
           Eventuais
+        </button>
+
+        <button
+          type="button"
+          className="tag-filter"
+          onClick={handleFilterRecorrentes}
+        >
+          Recorrentes
         </button>
       </S.DivFilterContainer>
 
       <S.DivCardContainer>
-        {arrayCardFinance.map((data) => (
-          <CardFinance
-            title={data.title}
-            subtitle={data.subtitle}
-            amount={data.amount}
-          />
-        ))}
+        {verifyFilter
+          ? filterdataState.map((data, i) => (
+              <CardFinance
+                key={i}
+                title={data.description}
+                subtitle={data.date}
+                amount={data.amount}
+              />
+            ))
+          : dataState.map((data, i) => (
+              <CardFinance
+                key={i}
+                title={data.description}
+                subtitle={data.date}
+                amount={data.amount}
+              />
+            ))}
       </S.DivCardContainer>
     </S.DivContainer>
   );
