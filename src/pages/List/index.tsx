@@ -7,6 +7,7 @@ import SelectInput from "../../components/SelectInput";
 
 import expensesJson from "../../repositores/expenses";
 import gainsJson from "../../repositores/gains";
+import { formatCurrency, formatData } from "../../utils/formaterFunctions";
 
 import * as S from "./styles";
 
@@ -112,8 +113,8 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
               <CardFinance
                 key={uuid()}
                 title={data.description}
-                subtitle={data.date}
-                amount={data.amount}
+                date={formatData(data.date)}
+                amount={formatCurrency(Number(data.amount))}
                 colorVerify={data.frequency}
               />
             ))
@@ -121,8 +122,8 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
               <CardFinance
                 key={uuid()}
                 title={data.description}
-                subtitle={data.date}
-                amount={data.amount}
+                date={formatData(data.date)}
+                amount={formatCurrency(Number(data.amount))}
                 colorVerify={data.frequency}
               />
             ))}

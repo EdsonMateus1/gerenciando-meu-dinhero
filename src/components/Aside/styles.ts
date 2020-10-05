@@ -42,6 +42,7 @@ export const LinkMenuItem = styled.div`
     transition: opacity 0.3s;
     font-size: 1rem;
     font-weight: 500;
+    color: ${(props) => props.theme.colors.info};
 
     &:hover {
       cursor: pointer;

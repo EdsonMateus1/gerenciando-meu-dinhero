@@ -4,14 +4,14 @@ import * as S from "./styles";
 
 interface ICardFinanceProps {
   title: string;
-  subtitle: string;
+  date: string;
   amount: string;
   colorVerify: string;
 }
 
 const CardFinance: React.FC<ICardFinanceProps> = ({
   title,
-  subtitle,
+  date,
   amount,
   colorVerify,
 }) => {
@@ -21,7 +21,7 @@ const CardFinance: React.FC<ICardFinanceProps> = ({
 
       <S.DivTitle>
         <span>{title}</span>
-        <small>{subtitle}</small>
+        <small>{date}</small>
       </S.DivTitle>
 
       <h3>{amount}</h3>
