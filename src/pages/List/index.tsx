@@ -1,4 +1,5 @@
 import React, { useMemo, useEffect, useState, useCallback } from "react";
+import { v4 as uuid } from "uuid";
 
 import CardFinance from "../../components/CardFinance";
 import ContentHeader from "../../components/ContentHeader";
@@ -107,18 +108,18 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
 
       <S.DivCardContainer>
         {verifyFilter
-          ? filterdataState.map((data, i) => (
+          ? filterdataState.map((data) => (
               <CardFinance
-                key={i}
+                key={uuid()}
                 title={data.description}
                 subtitle={data.date}
                 amount={data.amount}
                 colorVerify={data.frequency}
               />
             ))
-          : dataState.map((data, i) => (
+          : dataState.map((data) => (
               <CardFinance
-                key={i}
+                key={uuid()}
                 title={data.description}
                 subtitle={data.date}
                 amount={data.amount}
