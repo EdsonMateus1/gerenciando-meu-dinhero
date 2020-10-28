@@ -42,7 +42,7 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
 
   const [filterdataState, setFilterData] = useState<IData[]>([]);
 
-  const [verifyFilter, setVerifi] = useState(false);
+  const [verifyFilter, setVerifyFilter] = useState(false);
 
   const title = useMemo(() => {
     const title = match.params.type === "entry-balance" ? "Entradas" : "Saidas";
@@ -54,46 +54,54 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
   };
 
   useEffect(() => {
-    setVerifi(false);
+    setVerifyFilter(false);
     listData();
   }, [match.params]);
 
-  const filterEventuais = useCallback(() => {
-    const eventual = dataState.filter((e) => {
-      return e.frequency === "eventual";
+  const year = useMemo(() => {
+    let uniqueYear: number[] = [];
+
+    dataState.forEach((item) => {
+      const date = new Date(item.date);
+      const year = date.getFullYear();
+
+      if (!uniqueYear.includes(year)) {
+        uniqueYear.push(year);
+      }
     });
-    setFilterData(eventual);
-  }, [dataState]);
 
-  const filterRecorrentes = useCallback(() => {
-    const recorrente = dataState.filter((e) => {
-      return e.frequency === "recorrente";
+    return uniqueYear.map((year) => {
+      return {
+        value: year,
+        label: year,
+      }
     });
-    setFilterData(recorrente);
   }, [dataState]);
+  console.log(year);
 
-  const handleFilterEventuais = useCallback(() => {
-    setVerifi(true);
-    filterEventuais();
-  }, [dataState]);
-
-  const handleFilterRecorrentes = useCallback(() => {
-    setVerifi(true);
-    filterRecorrentes();
-  }, [dataState]);
-
+  const handleFilter = useCallback(
+    (filter: string) => {
+      const eventual = dataState.filter((e) => {
+        return e.frequency === filter;
+      });
+      setVerifyFilter(true);
+      setFilterData(eventual);
+    },
+    [dataState]
+  );
+  
   return (
     <S.DivContainer>
       <ContentHeader title={title}>
-        <SelectInput options={arrayOptionsMonth} />
-        <SelectInput options={arrayOptionsYear} />
+        <SelectInput options={year} />
+        <SelectInput options={year} />
       </ContentHeader>
 
       <S.DivFilterContainer>
         <button
           type="button"
-          className="tag-filter"
-          onClick={handleFilterEventuais}
+          className="tag-filter-eventuais"
+          onClick={() => handleFilter("eventual")}
         >
           Eventuais
         </button>
@@ -101,7 +109,7 @@ const List: React.FC<IRoutesParams> = ({ match }) => {
         <button
           type="button"
           className="tag-filter"
-          onClick={handleFilterRecorrentes}
+          onClick={() => handleFilter("recorrente")}
         >
           Recorrentes
         </button>
